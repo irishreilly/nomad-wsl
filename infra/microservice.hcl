@@ -22,7 +22,7 @@ job "ms" {
         ports = ["web"]
       }
       resources {
-        cpu    = 100
+        cpu    = 500
         memory = 256
       }
     }

@@ -72,8 +72,11 @@ nomad run microservice.hcl
   * Secrets can be isolated through a heirarchy such as project/environment and then policies can be applied accordingly to limit access to each project.
   * Everything in Vault is path-based, and each path corresponds to an operation or secret, so policies can be configured for operations with specific secrets.
   * Once authN takes place via username/password or keys, policies (i.e. named ACL rules) dictate access and a client token is generated for subsequent requests.
-  * Namespaces can be created to isolate environments within Vault so each organziation, team, or app can manage and access secrets securely and independently.
+  * Namespaces can be created to isolate environments within Vault so each organization, team, or app can manage and access secrets securely and independently.
   * Recent versions of Vault also support cross namespace secret sharing through group policies to reduce the overhead and burden on applications and teams.
+  * An organized structure could be a namespace for a company, and within that, namespaces for each dept or team, followed by apps, each with its own secrets.
+    * e.g. mycompany/legal/compliance-app or mycompany/hr/onboarding-app
+    * Consider org structure, self-service, auditing, and the secrets engine itself
 
 ## Performance, Reliability, and Scalability
 
@@ -84,6 +87,32 @@ nomad run microservice.hcl
   * A good practice is to have a cluster in at least 2 different regions for the purpose of disaster recovery.
   * Consul is recommended to provide features such as automatic clustering, service discovery, and dynamic configuration.
 * For jobs / tasks, it's often wise to run 2 or more of each on different nodes for HA through afffinity settings in the job definition.
+* To scale a job you can run the command 'nomad job scale [job] [group-if-more-than-1] [count]'.
+* Automatically scale a cluster or job, or dynamically size and app by installing the Nomad Autoscaler and leveraging an APM system.
+  * Be sure to configure Nomad for telemetry and integrate it with your metrics system as outlined in the [Hashicrop doc](https://developer.hashicorp.com/nomad/tools/autoscaling).
+  * Include a scaling block with a policy in the job definition or add a policy file on disk to configure app autoscaling.
+  * Here's an example of a scaling block based on connections, which would be added to the task group in the job definition:
+```
+    scaling {
+      min     = 2
+      max     = 10
+      enabled = true
+
+      policy {
+        evaluation_interval = "5s"
+        cooldown            = "1m"
+
+        check "active_connections" {
+          source = "prometheus"
+          query  = "scalar(open_connections_example_cache)"
+
+          strategy "target-value" {
+            target = 10
+          }
+        }
+      }
+    }
+```
 
 ## Observability & Alerting
 
