@@ -16,7 +16,7 @@ This is a deployment sample highlighting a local, single-node server using a WSL
 
 ### Nomad Infrastructure
 
-* You can launch a CMD window and then execute wsl, which assumes you set Ubuntu as your default distro.
+* Launch a CMD window as admin (right click it) then execute wsl, assuming you set Ubuntu as your default distro.
 * The infra/nomad-install.sh script in this repo can then be executed from within the Ubuntu distribution.
 * If problems arise, review the logs that show up in the console window. Use another window to troubleshoot.
 * Note that you can view your Linux distribution's file system through Windows Explorer when working with files.
@@ -49,7 +49,7 @@ nomad run microservice.hcl
 * If user credentials or other sensitive data are added, end-to-end encryption is recommended using TLS at a load balancer and a TLS listener in the application itself.
 * During the development process the use of a code quality tool that also scans for security issues is recommended, along with a scanner for the image once it's built.
 * Regular security scans are recommended for the Nomad servers and clients, in addition to the endpoint of each application. Any RASP tool or agent would be good too.
-* Harden the operating system of any machine on which Nomad runs to enhance security. Remove unecesssary software and use systems such as AppArmor, SELinux, and Seccomp.
+* Harden the operating system of any machine on which Nomad runs to enhance security. Remove unecessary software and use systems such as AppArmor, SELinux, and Seccomp.
 * Avoid the use of untrusted Docker images and untrusted code. If you need to run such code consider a more secure container runtime like gVisor or Kata for sandboxing.
 * Incorporate security headers into applications, such as X-XSS-Protection, and along those lines, consider the use of CORS for integration and security purposes. 
 * Always leverage secure networking, isolate apps via separate subnets (e.g. internal vs external or sensitive vs nonsensitive) and implement proper firewalls and rules. 
@@ -80,13 +80,13 @@ nomad run microservice.hcl
 
 ## Performance, Reliability, and Scalability
 
-* Ensure servers and clients have adequate hardware resources as outlined in the vendor documentaiton.
+* Ensure servers and clients have adequate hardware resources as outlined in the vendor documentation.
   * A production server should have at least 4 cores, 16 GB RAM, 40 GB of fast disk, and significant network bandwidth.
   * Install multiple servers and clients in a cluster for the purpose of high availability.
 * For enterprise production environments the recommendation is to have 3 - 5 servers, along with numerous clients.
   * A good practice is to have a cluster in at least 2 different regions for the purpose of disaster recovery.
   * Consul is recommended to provide features such as automatic clustering, service discovery, and dynamic configuration.
-* For jobs / tasks, it's often wise to run 2 or more of each on different nodes for HA through afffinity settings in the job definition.
+* For jobs / tasks, it's often wise to run 2 or more of each on different nodes for HA through affinity settings in the job definition.
 * To scale a job you can run the command 'nomad job scale [job] [group-if-more-than-1] [count]'.
 * Automatically scale a cluster or job, or dynamically size and app by installing the Nomad Autoscaler and leveraging an APM system.
   * Be sure to configure Nomad for telemetry and integrate it with your metrics system as outlined in the [Hashicrop doc](https://developer.hashicorp.com/nomad/tools/autoscaling).
@@ -137,7 +137,7 @@ nomad run microservice.hcl
 
 ## Future Improvements
 
-* Add a Table of Contents to this markdown page to simplify navigation, and incude screen shots to facilitate installation steps.
+* Add a Table of Contents to this markdown page to simplify navigation, and include screen shots to facilitate installation steps.
 * Convert the Troubleshooting section to an FAQ in order to call out common problems and solutions in a quick, easy-to-read way.
 * Develop a more robust Python microservice using a framework such as Flask or FastAPI and configure a TLS listener for security.
 * Perform a robust installation with Vault and provide a sample application that stores its secrets in that system accordingly.
