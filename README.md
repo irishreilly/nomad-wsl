@@ -1,16 +1,16 @@
 # Nomad Overview & WSL Example
 
-This guide provides an overview of Nomad, which is a workload scheduler and orchestrator from Hashicorp, along with a sample dev installation using WSL2 for Windows. Nomad is similar to Kubernetes, the popular container orchestration system originally created by Google, however Nomad can run both containerized and non-containerized applications on-prem or in the cloud. In addition to Docker, other Nomad task drivers include Java, exec, raw_exec, and QEMU for VMs. Additional benefits are that it's a relatively simple installation, it makes efficient use of hardware resources through bin packing, it's API-driven, and it can run both batch jobs and long-lived services.
+This guide provides an overview of Nomad, which is a workload scheduler and orchestrator from Hashicorp, along with a sample dev installation for WSL2. Nomad is similar to Kubernetes, the popular container orchestration system originally created by Google, however Nomad can run both containerized and non-containerized applications on-prem or in the cloud. In addition to Docker, other Nomad task drivers include Java, exec, raw_exec, and QEMU for VMs. Additional benefits are that it's a relatively simple installation, it makes efficient use of hardware resources through bin packing, it's API-driven, and it can run both batch jobs and long-lived services.
 
-This is a deployment sample highlighting a local, single-node server using a WSL2 Ubuntu distribution on Windows 11. It includes a sample job definition that you can deploy through the CLI or Web UI, and that references the containerized Python microservice provided. Note, a similar Nomad installation can be done using native Windows, MacOS, or Linux. For more extensive detail on Nomad, refer to the [Hashicorp Nomad Documentation](https://developer.hashicorp.com/nomad/docs).
+This example highlights a local, single-node server using an Ubuntu distribution for WSL2 on Windows 11. It includes a simple job definition that you can deploy through the CLI or Web UI, and that references the containerized Python microservice provided. Note, a similar Nomad installation can be done using native Windows, MacOS, or Linux. For more extensive detail on Nomad, refer to the [Hashicorp Nomad Documentation](https://developer.hashicorp.com/nomad/docs).
 
 ## Prerequisites
 
 * Ensure you have a Windows 11 machine with ample memory and multiple CPUs.  
-* Install [WSL2 for Windows](https://learn.microsoft.com/en-us/windows/wsl/install) and configure an Ubuntu distribution as the default.
-* Install [Docker Desktop for Windows](https://docs.docker.com/desktop/wsl/) and configure it for WSL 2.
-* Docker Desktop settings require WSL integration under 'General' and 'Ubuntu' integration under Resources.
-* Ensure you wsluser is in the 'docker' OS group.
+* Install [WSL2 for Windows](https://learn.microsoft.com/en-us/windows/wsl/install) and configure a recent Ubuntu distribution as the default.
+* Install [Docker Desktop for Windows](https://docs.docker.com/desktop/wsl/) and configure it to use WSL2 as opposed to Hyper-V.
+* In Docker Desktop's settings set WSL integration under 'General' and 'Ubuntu' integration under Resources.
+* Ensure the Docker install added your Windows wsluser to the 'docker' group for Ubuntu (/etc/group).
 
 ## Getting Started
 
@@ -80,7 +80,7 @@ nomad run microservice.hcl
 
 ## Performance, Reliability, and Scalability
 
-* Ensure servers and clients have adequate hardware resources as outlined in the vendor documentation.
+* Servers and clients should have adequate hardware resources as outlined in the vendor documentation.
   * A production server should have at least 4 cores, 16 GB RAM, 40 GB of fast disk, and significant network bandwidth.
   * Install multiple servers and clients in a cluster for the purpose of high availability.
 * For enterprise production environments the recommendation is to have 3 - 5 servers, along with numerous clients.
