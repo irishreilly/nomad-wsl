@@ -135,13 +135,6 @@ nomad run microservice.hcl
 * If a deployment fails, review the console log to help debug the issue, and review any app logs if the app fails to start.
 * Ensure the task driver for the target deployment is healthy via the UI by choosing Clients and then clicking on the client link.
 
-## Future Improvements
-
-* Add a Table of Contents to this markdown page to simplify navigation, and include screen shots to facilitate installation steps.
-* Convert the Troubleshooting section to an FAQ in order to call out common problems and solutions in a quick, easy-to-read way.
-* Develop a more robust Python microservice using a framework such as Flask or FastAPI and configure a TLS listener for security.
-* Perform a robust installation with Vault and provide a sample application that stores its secrets in that system accordingly.
-
 ## Authors and Contact Information
 
 Contributor names and contact info
