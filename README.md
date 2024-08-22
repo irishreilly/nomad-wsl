@@ -139,7 +139,7 @@ nomad run microservice.hcl
 
 Contributor names and contact info
 
-Paul Reilly - [LinkedIn Profile](www.linkedin.com/in/reilly-paul)
+Paul Reilly - [LinkedIn Profile](https://www.linkedin.com/in/reilly-paul)
 
 ## Version History
 
