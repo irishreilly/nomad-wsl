@@ -78,10 +78,10 @@ nomad run microservice.hcl
     * e.g. mycompany/legal/compliance-app or mycompany/hr/onboarding-app
     * Consider org structure, self-service, auditing, and the secrets engine itself
 
-## Performance, Reliability, and Scalability
+## Performance & Reliability Considerations
 
 * Servers and clients should have adequate hardware resources as outlined in the vendor documentation.
-  * A production server should have at least 4 cores, 16 GB RAM, 40 GB of fast disk, and significant network bandwidth.
+  * For example, a production server should ideally have at least 4 cores, 16 GB RAM, 40 GB of fast disk, and significant network bandwidth.
   * Install multiple servers and clients in a cluster for the purpose of high availability.
 * For enterprise production environments the recommendation is to have 3 - 5 servers, along with numerous clients.
   * A good practice is to have a cluster in at least 2 different regions for the purpose of disaster recovery.
@@ -114,7 +114,7 @@ nomad run microservice.hcl
     }
 ```
 
-## Observability & Alerting
+## Observability & Alerting Considersations
 
 * Nomad server and client agents provide a wide range of runtime metrics for themselves, the cluster, and the allocation being run.
   * Telemetry data is captured at 1 second intervals and includes gauges, counters, and timers.
@@ -139,7 +139,7 @@ nomad run microservice.hcl
 
 Contributor names and contact info
 
-Paul Reilly - [LinkedIn Profile](https://linked.com/in/reilly-paul)
+Paul Reilly - [LinkedIn Profile](https://www.linked.com/in/reilly-paul)
 
 ## Version History
 
