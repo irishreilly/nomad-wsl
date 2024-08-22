@@ -1,4 +1,4 @@
-# Nomad Overview & WSL2 Example
+# Nomad Overview & WSL Example
 
 This guide provides an overview of Nomad, which is a workload scheduler and orchestrator from Hashicorp, along with a sample dev installation using WSL2 for Windows. Nomad is similar to Kubernetes, the popular container orchestration system originally created by Google, however Nomad can run both containerized and non-containerized applications on-prem or in the cloud. In addition to Docker, other Nomad task drivers include Java, exec, raw_exec, and QEMU for VMs. Additional benefits are that it's a relatively simple installation, it makes efficient use of hardware resources through bin packing, it's API-driven, and it can run both batch jobs and long-lived services.
 
