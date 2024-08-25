@@ -20,7 +20,7 @@ This example highlights a local, single-node server using an Ubuntu distribution
 * The infra/nomad-install.sh script in this repo can then be executed from within the Ubuntu distribution.
 * If problems arise, review the logs that show up in the console window. Use another window to troubleshoot.
 * Note that you can view your Linux distribution's file system through Windows Explorer when working with files.
-* Once Nomad is installed you can launch it using the following command (note the need for sudo given Docker on WSL):
+* Once Nomad is installed you can launch it using the following command, which runs the agent in both server and client modes. Note the need for sudo given Docker on WSL. On Linux a Nomad server could run with a nonroot account, but a Nomad client requires root:
 ```
 sudo nomad agent -dev -bind=0.0.0.0
 ```
@@ -83,8 +83,8 @@ nomad run microservice.hcl
 * Servers and clients should have adequate hardware resources as outlined in the vendor documentation.
   * For example, a production server should ideally have at least 4 cores, 16 GB RAM, 40 GB of fast disk, and significant network bandwidth.
   * Install multiple servers and clients in a cluster for the purpose of high availability.
-* For enterprise production environments the recommendation is to have 3 - 5 servers, along with numerous clients.
-  * A good practice is to have a cluster in at least 2 different regions for the purpose of disaster recovery.
+* For enterprise production environments the recommendation is to have 3 or 5 servers (no more than 7), along with numerous clients.
+  * A good practice is to have a cluster in at least 2 different regions for the purpose of disaster recovery. You can manage those clusters independently or configure multi-region clustering.
   * Consul is recommended to provide features such as automatic clustering, service discovery, and dynamic configuration.
 * For jobs / tasks, it's often wise to run 2 or more of each on different nodes for HA through affinity settings in the job definition.
 * To scale a job you can run the command 'nomad job scale [job] [group-if-more-than-1] [count]'.
